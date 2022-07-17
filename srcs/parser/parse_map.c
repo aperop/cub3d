@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbarra <mbarra@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/17 13:37:08 by mbarra            #+#    #+#             */
+/*   Updated: 2022/07/17 13:41:15 by mbarra           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	free_tempmap(t_data *data, int **tempmap)
@@ -57,7 +69,7 @@ void	get_map(char **argv, t_data *data)
 	int	i;
 
 	data->map = malloc(sizeof(int *) * (data->map_height + 1));
-//	data->map[data->map_height] = NULL;
+	data->map[data->map_height] = NULL;
 	check_map_filepath(argv, data);
 	i = -1;
 	while (++i < data->map_begin)
@@ -79,5 +91,4 @@ void	get_map(char **argv, t_data *data)
 	}
 	if (data->parse_data.direction_set == 0)
 		exit_delete_map(data, i, 0);
-	close(data->parse_data.map_fd);
 }
