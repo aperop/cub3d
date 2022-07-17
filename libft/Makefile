@@ -52,16 +52,16 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		ar rcs $(NAME) $?
+		@ar rcs $(NAME) $?
 
 %.o: %.c ${PATH_INCLS}/*.h
-		$(CC) $(FLAGS) -I ${PATH_INCLS} -c $< -o $@
+		@$(CC) $(FLAGS) -I ${PATH_INCLS} -c $< -o $@
 
 clean:
-		$(RM) $(OBJ)
+		@$(RM) $(OBJ)
 
 fclean: clean
-		$(RM) $(NAME)
+		@$(RM) $(NAME)
 
 re: fclean all
 
