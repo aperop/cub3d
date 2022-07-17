@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../includes/cub3d.h"
 
 void	draw_vertical_line(t_data *data, int x, int begin, int end)
 {

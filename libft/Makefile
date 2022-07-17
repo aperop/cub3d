@@ -53,6 +53,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 		@ar rcs $(NAME) $?
+		@echo "\033[1m\033[32mLibft successfully created\033[39m"
 
 %.o: %.c ${PATH_INCLS}/*.h
 		@$(CC) $(FLAGS) -I ${PATH_INCLS} -c $< -o $@

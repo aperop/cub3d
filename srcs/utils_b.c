@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../includes/cub3d.h"
 
 int	fix_temp_path(char *temp)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../includes/cub3d.h"
 
 void	set_north(t_data *data, int x, int y, int *map_line)
 {

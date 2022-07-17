@@ -21,7 +21,7 @@
 # include <stdlib.h>
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
-# include <mlx.h>
+# include "../minilibx/mlx.h"
 # include <math.h>
 
 typedef struct s_img_data {

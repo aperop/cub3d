@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 static int	**fill_map_check(t_data *data, int **tempmap, int i, int j)
 {

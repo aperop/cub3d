@@ -1,62 +1,56 @@
 NAME = cub3d
 
-SRC_DIR = srcs/
+HEADERS = includes/*.h
 
-SRC =	parser/check_floor_and_ceiling.c parser/check_settings.c\
-		main.c\
-		parser/parser.c parser/parse_map.c parser/map_check.c\
-		move.c\
-		render_next_frame_a.c render_next_frame_b.c\
-		rotate.c set_direction.c\
-		structs_init.c\
-		utils_a.c utils_b.c\
-		wall_collision_a.c wall_collision_b.c
+SRC_DIR = srcs
 
-SRCS = $(addprefix $(SRC_DIR), $(SRC))
+OBJ_DIR	= objs
 
-FLAGS = -Wall -Wextra -Werror -g
+SRC =	$(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c)
 
-MLX_FLAGS = -lm -Lminilibx -framework OpenGL -framework AppKit
+OBJ =	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
 
-LIBS = libft/libft.a libmlx.a
+CFLAGS = -Wall -Wextra -Werror
 
-HDRS = -I minilibx -I libft/includes -I includes/
+LIBS = libft/libft.a minilibx/libmlx.a
 
-OBJS := $(SRCS:.c=.o)
+INC = -I ./includes -I ./minilibx -I ./libft/includes
 
-OPT_FLAGS = -O2
+LIBS_FLAGS = -L ./libft -lft -L ./minilibx -lmlx -framework OpenGL -framework AppKit
 
-all: $(NAME)
-	./cub3d maps/test1.cub
 
-$(NAME): $(OBJS)
-	@$(MAKE) -C  libft/ all
-	@$(MAKE) -C minilibx/ all
-	@mv minilibx/libmlx.a ./libmlx.a
-	@$(CC) $(LIBS) $(HDRS) $(MLX_FLAGS) $(FLAGS) -o $@ $^
-	@echo "\033[1m\033[32mSuccessfully Compiled\033[39m"
 
-%.o: %.c
-	@$(CC) -o $@ -c $<  $(HDRS) $(FLAGS)
+
+all:		$(NAME)
+
+$(NAME):	$(OBJ)
+				$(CC) $(CFLAGS) $(INC) $(LIBS_FLAGS) $^ -o $@
+				@echo "\033[1m\033[32mAll successfully compiled\033[39m"
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIBS) $(HEADERS)
+				@mkdir -p $(OBJ_DIR)
+				@mkdir -p $(@:/$(notdir $@)=)
+				$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBS):
+				@make -C libft/
+				@make -C minilibx/
 
 clean: 
-	@$(MAKE) -C libft/ clean
-	@$(MAKE) -C minilibx/ clean
-	@rm $(OBJS)
-	@echo "\033[1m\033[33mCleaning Object Files\033[39m"
+				rm -rf $(OBJ_DIR)
+				make clean -C libft/
+				make clean -C minilibx/
+				@echo "\033[1m\033[33mCleaning Object Files\033[39m"
 
-fclean:
-	@$(MAKE) -C libft/ fclean
-	@$(MAKE) -C minilibx/ clean
-	@rm -f $(OBJS)
-	@rm -f libmlx.a
-	@rm -f $(NAME)
-	@echo "\033[1m\033[31mPurged Objects and Executables\033[39m"
+fclean:		clean
+				make fclean -C libft/
+				rm -f $(NAME)
+				@echo "\033[1m\033[31mPurged Objects and Executables\033[39m"
 
 norm:
-	norminette srcs/ includes/ libft/
+				norminette libft/ srcs/ includes/
 
 re: fclean all
 

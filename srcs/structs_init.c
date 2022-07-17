@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../includes/cub3d.h"
 
 static void	parse_data_init(t_data *data)
 {

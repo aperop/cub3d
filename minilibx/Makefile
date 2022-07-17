@@ -12,6 +12,7 @@ CFLAGS+=-O2
 CFLAGS+= -DSTRINGPUTX11 -w
 
 all: $(NOM)
+	 @echo "\033[1m\033[32mLibmlx successfully created\033[39m"
 
 $(NOM):	$(OBJ)
 	@ar -r $(NOM) $(OBJ)

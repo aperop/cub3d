@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../includes/cub3d.h"
 
 int	check_next_pos_down_x(t_data *data)
 {

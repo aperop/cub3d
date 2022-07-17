@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <fcntl.h>
+#include "../../includes/cub3d.h"
 
 void	check_map_filepath(char **argv, t_data *data)
 {
