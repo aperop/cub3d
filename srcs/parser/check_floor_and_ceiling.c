@@ -1,6 +1,23 @@
-#include <cub3d.h>
+#include "cub3d.h"
 
-static int	rgb_to_hex_b(t_data *data, const int *current)
+static int	valid_last_rgb(char *blue)
+{
+	int	i;
+
+	i = 0;
+	if (!ft_isdigit(blue[i]))
+		return (0);
+	while (ft_isdigit(blue[i]))
+		i++;
+	while (blue[i] == ' ')
+		i++;
+	if (blue[i] != '\0')
+		return (0);
+	else
+		return (1);
+}
+
+static int	rgb_to_hex(t_data *data, const int *current)
 {
 	int	i;
 
@@ -20,7 +37,7 @@ static int	rgb_to_hex_b(t_data *data, const int *current)
 	return (1);
 }
 
-static int	rgb_to_hex(char *decimals, t_data *data)
+static int	split_rgb(char *decimals, t_data *data)
 {
 	int		i;
 
@@ -28,7 +45,7 @@ static int	rgb_to_hex(char *decimals, t_data *data)
 	data->rgb = ft_split(decimals, ',');
 	while (data->rgb[i])
 	{
-		if (!rgb_to_hex_b(data, &i))
+		if (!rgb_to_hex(data, &i))
 		{
 			free_split(data->rgb);
 			return (-1);
@@ -46,13 +63,13 @@ static void	floor_ceiling_rgb(t_data *data, int *action, char c)
 {
 	if (c == 'C')
 	{
-		data->ceiling_color = rgb_to_hex(data->temp, data);
+		data->ceiling_color = split_rgb(data->temp, data);
 		data->parse_data.ceiling_set = 1;
 		*action = 1;
 	}
 	else if (c == 'F')
 	{
-		data->floor_color = rgb_to_hex(data->temp, data);
+		data->floor_color = split_rgb(data->temp, data);
 		data->parse_data.floor_set = 1;
 		*action = 1;
 	}
@@ -73,7 +90,7 @@ void	check_ceiling_or_floor(t_data *data, int *action, const char cf)
 			data->temp++;
 		if (ft_isdigit(*data->temp))
 		{
-			if (rgb_to_hex(data->temp, data) > 0)
+			if (split_rgb(data->temp, data) > 0)
 			{
 				floor_ceiling_rgb(data, action, cf);
 				return ;
