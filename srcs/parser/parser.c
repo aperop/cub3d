@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbarra <mbarra@student.21-school.ru>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/17 13:36:55 by mbarra            #+#    #+#             */
+/*   Updated: 2022/07/17 13:41:08 by mbarra           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include <fcntl.h>
 
@@ -91,5 +103,6 @@ void	map_check_init(char **argv, t_data *data)
 	settings_check(data);
 	take_map_height(data);
 	get_map(argv, data);
+	close(data->parse_data.map_fd);
 	check_map(data);
 }
