@@ -14,23 +14,23 @@
 
 void	rotate(t_data *data, double rotate_speed)
 {
-    double	old_dir_x;
-    double	old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
-    old_dir_x = data->dir_x;
-    data->dir_x = data->dir_x * cos(-rotate_speed) - \
+	old_dir_x = data->dir_x;
+	data->dir_x = data->dir_x * cos(-rotate_speed) - \
 data->dir_y * sin(-rotate_speed);
-    data->dir_y = old_dir_x * sin(-rotate_speed) + \
+	data->dir_y = old_dir_x * sin(-rotate_speed) + \
 data->dir_y * cos(-rotate_speed);
-    old_plane_x = data->plane_x;
-    data->plane_x = data->plane_x * cos(-rotate_speed) - \
+	old_plane_x = data->plane_x;
+	data->plane_x = data->plane_x * cos(-rotate_speed) - \
 data->plane_y * sin(-rotate_speed);
-    data->plane_y = old_plane_x * sin(-rotate_speed) + \
+	data->plane_y = old_plane_x * sin(-rotate_speed) + \
 data->plane_y * cos(-rotate_speed);
-    render_next_frame(data);
+	render_next_frame(data);
 }
 
-void	rotate_left(t_data *data)
+static void	rotate_left(t_data *data)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -48,7 +48,7 @@ data->plane_y * cos(ROTATE_SPEED);
 	render_next_frame(data);
 }
 
-void	rotate_right(t_data *data)
+static void	rotate_right(t_data *data)
 {
 	double	old_dir_x;
 	double	old_plane_x;

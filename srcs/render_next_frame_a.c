@@ -21,11 +21,6 @@ void	draw_vertical_line(t_data *data, int x, int begin, int end)
 	}
 }
 
-//Initial calculations..
-//Calculate ray position and direction 
-//set map_x and map_y to area in map using pos_x and pos_y
-//Calculate distance to next X line and Y line
-//Initializing hit to 0 for future DDA algorithm
 static void	init_calc_one(t_data *data)
 {
 	data->camera_x = 2 * data->x / (double)WINWIDTH - 1;
@@ -44,7 +39,6 @@ static void	init_calc_one(t_data *data)
 	data->hit = 0;
 }
 
-//Calculate Initial side distance to next X_step or Y_step for DDA algorithm
 static void	init_calc_two(t_data *data)
 {
 	if (data->ray_dir_x < 0)
@@ -55,8 +49,8 @@ static void	init_calc_two(t_data *data)
 	else
 	{
 		data->step_x = 1;
-		data->side_dist_x = (data->map_x + \
-1.0 - data->pos_x) * data->delta_dist_x;
+		data->side_dist_x = (data->map_x + 1.0 - data->pos_x) \
+							* data->delta_dist_x;
 	}
 	if (data->ray_dir_y < 0)
 	{
@@ -71,9 +65,6 @@ data->pos_y) * data->delta_dist_y;
 	}
 }
 
-//Digital Diferential Analizer
-//this just jumps to the next nearest line, could be x or y and then
-//checks if that square is occupied by 1 (wall hit)
 static void	dda_algorithm(t_data *data)
 {
 	while (data->hit == 0)

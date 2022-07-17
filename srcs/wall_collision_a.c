@@ -31,11 +31,10 @@ int	check_next_pos_down_x(t_data *data)
 		pos_next = (int)data->pos_x + 1;
 	}
 	if ((int)data->pos_x == (int)value && \
-data->map[pos_next][(int)data->pos_y] == 1)
+	data->map[pos_next][(int)data->pos_y] == 1)
 	{
-		if (pos_next > (int)data->pos_x && temp_float > 0.90)
-			return (0);
-		else if (pos_next < (int)data->pos_x && temp_float < 0.10)
+		if ((pos_next > (int)data->pos_x && temp_float > 0.90) \
+		|| (pos_next < (int)data->pos_x && temp_float < 0.10))
 			return (0);
 	}
 	return (1);
@@ -56,11 +55,10 @@ int	check_next_pos_down_y(t_data *data)
 	else
 		pos_next = (int)data->pos_y + 1;
 	if ((int)data->pos_y == (int)value && \
-data->map[(int)data->pos_x][pos_next] == 1)
+	data->map[(int)data->pos_x][pos_next] == 1)
 	{
-		if (pos_next > (int)data->pos_y && temp_float > 0.90)
-			return (0);
-		else if (pos_next < (int)data->pos_y && temp_float < 0.10)
+		if ((pos_next > (int)data->pos_y && temp_float > 0.90) \
+		|| (pos_next < (int)data->pos_y && temp_float < 0.10))
 			return (0);
 	}
 	return (1);
@@ -85,11 +83,10 @@ int	check_next_pos_up_x(t_data *data)
 		pos_next = (int)data->pos_x - 1;
 	}
 	if ((int)data->pos_x == (int)value && \
-data->map[pos_next][(int)data->pos_y] == 1)
+	data->map[pos_next][(int)data->pos_y] == 1)
 	{
-		if (pos_next > (int)data->pos_x && temp_float > 0.90)
-			return (0);
-		else if (pos_next < (int)data->pos_x && temp_float < 0.10)
+		if ((pos_next > (int)data->pos_x && temp_float > 0.90) \
+		|| (pos_next < (int)data->pos_x && temp_float < 0.10))
 			return (0);
 	}
 	return (1);
@@ -110,11 +107,10 @@ int	check_next_pos_up_y(t_data *data)
 	else
 		pos_next = (int)data->pos_y - 1;
 	if ((int)data->pos_y == (int)value && \
-data->map[(int)data->pos_x][pos_next] == 1)
+	data->map[(int)data->pos_x][pos_next] == 1)
 	{
-		if (pos_next > (int)data->pos_y && temp_float > 0.90)
-			return (0);
-		else if (pos_next < (int)data->pos_y && temp_float < 0.10)
+		if ((pos_next > (int)data->pos_y && temp_float > 0.90) \
+		|| (pos_next < (int)data->pos_y && temp_float < 0.10))
 			return (0);
 	}
 	return (1);

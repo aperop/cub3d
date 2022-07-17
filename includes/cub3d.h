@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dhawkgir <dhawkgir@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/17 15:02:42 by dhawkgir          #+#    #+#             */
+/*   Updated: 2022/07/17 15:02:43 by dhawkgir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # define WINWIDTH 1024
 # define WINHEIGHT 768
-# define ROTATE_SPEED 0.1
-# define MOVE_SPEED 0.5
+# define ROTATE_SPEED 0.05
+# define MOVE_SPEED 1
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -127,6 +139,8 @@ int		keypressed(int keycode, t_data	*data);
 void	rotate(t_data *data, double rotate_speed);
 void	down_pressed(t_data *data);
 void	up_pressed(t_data *data);
+void	left_pressed(t_data *data);
+void	right_pressed(t_data *data);
 
 int		check_next_pos_down_x(t_data *data);
 int		check_next_pos_down_y(t_data *data);
@@ -143,26 +157,22 @@ int		render_next_frame(t_data *data);
 void	texture_setter(t_data *data);
 void	vertical_line_calc(t_data *data);
 void	draw_window_line(t_data *data);
-void	left_pressed(t_data *data);
-void	right_pressed(t_data *data);
-
 
 void	check_ceiling_or_floor(t_data *data, int *action, char cf);
 
+# ifndef KEYCODES_OSX_H
+#  define KEYCODES_OSX_H
 
-#ifndef KEYCODES_OSX_H
-# define KEYCODES_OSX_H
+#  define UP_KEY 13
+#  define LEFT_KEY 0
+#  define DOWN_KEY 1
+#  define RIGHT_KEY 2
 
-# define UP_KEY 13
-# define LEFT_KEY 0
-# define DOWN_KEY 1
-# define RIGHT_KEY 2
+#  define LEFT_ROTATE 123
+#  define RIGHT_ROTATE 124
 
-# define LEFT_ROTATE 123
-# define RIGHT_ROTATE 124
+#  define ESC_KEY 53
 
-# define ESC_KEY 53
-
-#endif //KEYCODES_OSX_H
+# endif //KEYCODES_OSX_H
 
 #endif //CUB3D_H
