@@ -26,7 +26,7 @@ LIBS_FLAGS = -L ./libft -lft -L ./minilibx -lmlx -framework OpenGL -framework Ap
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-				$(CC) $(CFLAGS) $(INC) $(LIBS_FLAGS) $^ -o $@
+				$(CC) $(CFLAGS) $(INC) $(LIBS_FLAGS) $? -o $@
 				@echo "\033[1m\033[32mAll successfully compiled\033[39m"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIBS) $(HEADERS)
@@ -50,8 +50,8 @@ fclean:		clean
 				@echo "\033[1m\033[31mPurged Objects and Executables\033[39m"
 
 norm:
-				norminette libft/ srcs/ includes/
+				norminette libft/ srcs/ includes/ | grep Error || echo OK!
 
 re: fclean all
 
-.PHONY: all clean fclean re cub3d norm
+.PHONY: all clean fclean re norm
