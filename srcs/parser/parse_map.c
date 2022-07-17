@@ -13,23 +13,6 @@ void	free_tempmap(t_data *data, int **tempmap)
 	free(tempmap);
 }
 
-void	malloc_fail(t_data *data, int **tempmap, int i, int flag)
-{
-	int	x;
-
-	x = 0;
-	if (flag == 1)
-	{
-		while (x < i)
-		{
-			free(tempmap[x]);
-			x++;
-		}
-		free(tempmap);
-	}
-	exit_delete_map(data, data->map_height, 0);
-}
-
 void	free_temp_and_exit(t_data *data, int **tempmap)
 {
 	free_tempmap(data, tempmap);
